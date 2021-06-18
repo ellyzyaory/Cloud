@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelead.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+</head>
+<body>
+    <div class = "body-container">
+        <div class = "auth-page-container">
+            <form class = "auth-form" th:action="@{/}" method="post" th:object="${user}">
+                <h2 class="auth-heading">Register</h2>
+                <div class = "group-row">
+                    <label class="display">E-mail</label>
+                    <input type="email" class="form-control" placeholder="Username" th:field="*{email}" required>
+                </div>
+                <div class = "group-row">
+                    <label class="display">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}" required minlength="6" maxlength="10">
+                </div>
+                <div class = "group-row">
+                    <label class="display">First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" th:field="*{firstName}" required minlength="2" maxlength="20">
+                </div>
+                <div class = "group-row">
+                    <label class="display">Last Name</label>
+                    <input type="text"  class="form-control" placeholder="Last Name" th:field="*{lastName}" required minlength="2" maxlength="20">
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+                <!--<p>Already have an account?</p>
+                <a th:href="@{/login}">Login</a>-->
+            </form>
+        </div>
+    </div>
+</body>
+</html>

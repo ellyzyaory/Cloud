@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymelead.org"
+        xmlns:sec="https://www.thymelead.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Cloud</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!--<h1>Document</h1>-->
+
+    <header th:replace="header"></header>
+    <div class="upload-form" sec:authorize="isAuthenticated()">
+        <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+            <div class="form-container">
+                <h2>Upload Your Files</h2>
+                <input type="file" name="document" required />
+            </div>
+        <div class="position-button">
+            <input type="submit" value="Upload" class="btn btn-primary">
+        </div>
+        </form>
+
+        <th:block th:each="doc: ${list}">
+            <div class="document-list">
+                <!--<a th:href="${pageContext.request.contextPath}/document/delete/${document.id}" onclick="return confirm('Are you sure?')"><img class="x" th:src="@{images/xremovebg.png}"></a>-->
+                <img class = "file-document" th:src="@{/images/fileremovedbg.png}">
+                <a class = "document-name" th:href="@{'/download?id=' + ${doc.id}}">[[${doc.name}]]</a>
+            </div>
+        </th:block>
+    </div>
+    <div sec:authorize="isAnonymous()">
+    </div>
+
+</body>
+</html>
